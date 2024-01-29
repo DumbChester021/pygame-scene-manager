@@ -1,12 +1,12 @@
-# settingsScene.py
+# SettingsScene.py
 
 import pygame
-import sys
 
 class SettingsScene:
-    def __init__(self, screen):
+    def __init__(self, screen, scene_manager):
         self.screen = screen
-        self.font = pygame.font.Font(None, 36)  # You can adjust the font size
+        self.scene_manager = scene_manager
+        self.font = pygame.font.Font(None, 36)
 
         self.title_text = self.font.render("Settings", True, (255, 255, 255))
         self.title_rect = self.title_text.get_rect(center=(screen.get_width() // 2, 100))
@@ -20,14 +20,13 @@ class SettingsScene:
         pass
 
     def cleanup(self):
-        # Clean up resources when switching away from this scene
         pass
 
     def update(self):
         self.debug_mode_text = self.font.render(f"Debug Mode: {'On' if self.debug_mode else 'Off'}", True, (255, 255, 255))
 
     def render(self):
-        self.screen.fill((0, 0, 0))  # Set background color
+        self.screen.fill((0, 0, 0))
 
         self.screen.blit(self.title_text, self.title_rect)
         self.screen.blit(self.debug_mode_text, self.debug_mode_rect)

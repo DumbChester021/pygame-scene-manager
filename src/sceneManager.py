@@ -1,27 +1,33 @@
-# sceneManager.py
+# SceneManager.py
 
 import pygame
 import sys
 
 class SceneManager:
-    def __init__(self, initial_scene, screen):
-        self.current_scene = initial_scene(screen)
+    def __init__(self, screen):
+        self.screen = screen
+        self.scenes = {}
+        self.current_scene = None
 
-    def switch_scene(self, new_scene):
-        # Clean up the current scene before switching
-        self.current_scene.cleanup()
+    def add_scene(self, scene_name, scene):
+        self.scenes[scene_name] = scene
 
-        # Instantiate the new scene with the screen parameter
-        self.current_scene = new_scene(screen)
+    def switch_scene(self, scene_name):
+        if self.current_scene:
+            self.current_scene.cleanup()
+
+        self.current_scene = self.scenes.get(scene_name)
+
+        if self.current_scene:
+            self.current_scene.setup()
 
     def run_current_scene(self):
-        # Handle events for the active scene
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            self.current_scene.handle_event(event)
+        if self.current_scene:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                self.current_scene.handle_event(event)
 
-        # Update and render the active scene
-        self.current_scene.update()
-        self.current_scene.render()
+            self.current_scene.update()
+            self.current_scene.render()
