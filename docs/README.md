@@ -3,7 +3,7 @@
 
 # Pygame Scene Manager
 
-![Pygame Scene Manager Logo](assets/logo.png)
+![Pygame Scene Manager Logo](../assets/logo.png)
 
 A flexible and efficient scene manager for Pygame, allowing easy organization and switching between different scenes in your game.
 
