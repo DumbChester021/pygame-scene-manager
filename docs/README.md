@@ -36,6 +36,11 @@ The Pygame Scene Manager is designed to simplify the management of different sce
 
 ## Getting Started
 
+Certainly! If you have a `requirements.txt` file that specifies the dependencies, you can update the README to reflect that. Here's the modified section:
+
+Replace the existing installation section in the README with the following:
+
+```markdown
 ### Installation
 
 To use the Pygame Scene Manager, follow these steps:
@@ -55,8 +60,9 @@ To use the Pygame Scene Manager, follow these steps:
 3. Install the required dependencies:
 
    ```bash
-   pip install pygame
+   pip install -r requirements.txt
    ```
+
 
 ### Usage
 
