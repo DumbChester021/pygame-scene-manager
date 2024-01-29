@@ -14,6 +14,8 @@ A flexible and efficient scene manager for Pygame, allowing easy organization an
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Creating New Scenes](#creating-new-scenes)
+    - [Switching Scenes](#switching-scenes)
 - [Scenes](#scenes)
   - [Main Menu Scene](#main-menu-scene)
   - [Settings Scene](#settings-scene)
@@ -36,7 +38,6 @@ The Pygame Scene Manager is designed to simplify the management of different sce
 
 ## Getting Started
 
-```markdown
 ### Installation
 
 To use the Pygame Scene Manager, follow these steps:
@@ -58,7 +59,6 @@ To use the Pygame Scene Manager, follow these steps:
    ```bash
    pip install -r requirements.txt
    ```
-
 
 ### Usage
 
@@ -94,6 +94,65 @@ To use the Pygame Scene Manager, follow these steps:
        pygame.display.flip()
    ```
 
+#### Creating New Scenes
+
+You can create custom scenes by following these steps:
+
+1. **Create a New Scene Class:**
+   - Create a new Python file for your scene, e.g., `customScene.py`.
+   - Define a class for your scene, inheriting from the base `Scene` class in `scene.py`.
+   - Implement the necessary methods (`setup`, `update`, `render`, `handle_event`) in your scene class.
+
+   Example:
+   ```python
+   # customScene.py
+
+   import pygame
+   from scene import Scene
+
+   class CustomScene(Scene):
+       def setup(self):
+           # Initialize any scene-specific variables or resources here
+           pass
+
+       def update(self):
+           # Update logic for your scene
+           pass
+
+       def render(self):
+           # Render objects for your scene
+           pass
+
+       def handle_event(self, event):
+           # Handle events for your scene
+           pass
+   ```
+
+2. **Import and Use the New Scene:**
+   - Import the new scene in your main script.
+   - When initializing the `SceneManager`, pass an instance of your custom scene.
+
+   Example:
+   ```python
+   from sceneManager import SceneManager
+   from customScene import CustomScene
+
+   scene_manager = SceneManager(CustomScene, screen)
+   ```
+
+#### Switching Scenes
+
+You can switch between scenes in your game:
+
+- Call the `switch_scene` method on the `SceneManager` instance.
+- Pass the class of the scene you want to switch to.
+
+Example:
+```python
+# Switch to the CustomScene
+scene_manager.switch_scene(CustomScene)
+```
+
 ## Scenes
 
 ### Main Menu Scene
@@ -128,3 +187,4 @@ Contributions are welcome! If you have suggestions, bug reports, or feature requ
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
+
