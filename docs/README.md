@@ -3,7 +3,7 @@
 
 # Pygame Scene Manager
 
-![Pygame Scene Manager Logo](path/to/your/logo.png)
+![Pygame Scene Manager Logo](../logo.png)
 
 A flexible and efficient scene manager for Pygame, allowing easy organization and switching between different scenes in your game.
 
@@ -35,10 +35,6 @@ The Pygame Scene Manager is designed to simplify the management of different sce
 - Basic scenes included (Main Menu and Settings), with the ability to expand for custom scenes.
 
 ## Getting Started
-
-Certainly! If you have a `requirements.txt` file that specifies the dependencies, you can update the README to reflect that. Here's the modified section:
-
-Replace the existing installation section in the README with the following:
 
 ```markdown
 ### Installation
