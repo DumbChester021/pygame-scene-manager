@@ -86,9 +86,25 @@ To use the Pygame Scene Manager, follow these steps:
    scene_manager = SceneManager(MainMenuScene, screen)
    ```
 
-4. Run the game loop with the `run_current_scene` method:
+4. Add the scenes to the `SceneManager` :
+   ```python
+   main_menu_scene = MainMenuScene(screen, scene_manager)
+   scene_manager.add_scene("MainMenuScene", main_menu_scene)
+
+   settings_scene = SettingsScene(screen, scene_manager)
+   scene_manager.add_scene("SettingsScene", settings_scene)
+
+   new_game_scene = NewGameScene(screen, scene_manager)
+   scene_manager.add_scene("NewGameScene", new_game_scene)
+   
+   ```
+
+5. Set the initial scene and Run the game loop with the `run_current_scene` method:
 
    ```python
+   #Set the Initial Scene
+   scene_manager.switch_scene("MainMenuScene")
+
    while True:
        scene_manager.run_current_scene()
        pygame.display.flip()
@@ -130,14 +146,14 @@ You can create custom scenes by following these steps:
 
 2. **Import and Use the New Scene:**
    - Import the new scene in your main script.
-   - When initializing the `SceneManager`, pass an instance of your custom scene.
+   - Add the custom scene to scenemanager at main.
 
    Example:
    ```python
    from sceneManager import SceneManager
    from customScene import CustomScene
 
-   scene_manager = SceneManager(CustomScene, screen)
+   custom_scene = CustomScene(screen, scene_manager)
    ```
 
 #### Switching Scenes
@@ -145,12 +161,12 @@ You can create custom scenes by following these steps:
 You can switch between scenes in your game:
 
 - Call the `switch_scene` method on the `SceneManager` instance.
-- Pass the class of the scene you want to switch to.
+- Pass the name of the scene you want to switch to (needs to match the name you registered it to when adding it in the main.py).
 
 Example:
 ```python
 # Switch to the CustomScene
-scene_manager.switch_scene(CustomScene)
+scene_manager.switch_scene("CustomScene")
 ```
 
 ## Scenes
@@ -163,6 +179,10 @@ The main menu scene provides a basic menu structure with options for continuing 
 
 The settings scene allows the user to toggle debug mode on and off, providing essential details for developers, such as FPS and other debugging information.
 
+### New Game Scene
+
+The New Game scene is a blank example of another scene that you can use and copy to create new custom scenes
+
 ## Optimizations
 
 The Pygame Scene Manager includes optimizations for:
@@ -170,13 +190,10 @@ The Pygame Scene Manager includes optimizations for:
 - Memory Management
 - Render Efficiency
 - Event Handling
+- Adding Custom Scenes
 - Switching Scenes
 - Code Cleanup and Clarity
 - Consistency and Readability
-
-## Production QA
-
-For production-quality assurance, the Pygame Scene Manager has undergone testing and optimization to ensure efficient memory usage, rendering, and scene switching. Please refer to the [Production QA](#production-qa) section in the documentation for details.
 
 ## Contributing
 
