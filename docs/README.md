@@ -83,7 +83,7 @@ To use the Pygame Scene Manager, follow these steps:
 3. Create an instance of the `SceneManager`:
 
    ```python
-   scene_manager = SceneManager(MainMenuScene, screen)
+   scene_manager = SceneManager(screen)
    ```
 
 4. Add the scenes to the `SceneManager` :
@@ -116,32 +116,56 @@ You can create custom scenes by following these steps:
 
 1. **Create a New Scene Class:**
    - Create a new Python file for your scene, e.g., `customScene.py`.
-   - Define a class for your scene, inheriting from the base `Scene` class in `scene.py`.
+
    - Implement the necessary methods (`setup`, `update`, `render`, `handle_event`) in your scene class.
 
-   Example:
+   Example (Used NewGame Scene as an Example):
    ```python
-   # customScene.py
-
+   # NewGameScene.py
    import pygame
-   from scene import Scene
 
-   class CustomScene(Scene):
-       def setup(self):
-           # Initialize any scene-specific variables or resources here
-           pass
+   class NewGameScene:
+      def __init__(self, screen, scene_manager):
+         self.screen = screen
+         self.scene_manager = scene_manager
+         self.font = pygame.font.Font(None, 36)
 
-       def update(self):
-           # Update logic for your scene
-           pass
+         self.title_text = self.font.render("New Game", True, (255, 255, 255))
+         self.title_rect = self.title_text.get_rect(center=(screen.get_width() // 2, 100))
 
-       def render(self):
-           # Render objects for your scene
-           pass
+         self.game_started = False
 
-       def handle_event(self, event):
-           # Handle events for your scene
-           pass
+      def setup(self):
+         self.game_started = True
+         # Add any additional setup logic for starting a new game
+
+      def cleanup(self):
+         pass
+
+      def update(self):
+         # Add update logic for the new game scene
+         pass
+
+      def render(self):
+         self.screen.fill((0, 0, 0))
+
+         self.screen.blit(self.title_text, self.title_rect)
+
+         if self.game_started:
+               # Render game-related content here
+               pass
+         else:
+               # Render new game scene content
+               pass
+
+      def handle_event(self, event):
+         if event.type == pygame.KEYDOWN:
+               if event.key == pygame.K_RETURN:
+                  self.handle_selection()
+
+      def handle_selection(self):
+         # Handle new game scene selection (e.g., starting the game)
+         print("Starting a new game")
    ```
 
 2. **Import and Use the New Scene:**
